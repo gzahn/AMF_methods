@@ -1,3 +1,6 @@
+# ignore sequence data files
+data/seq
+
 # History files
 .Rhistory
 .Rapp.history
