@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # this will download and build the custom databases
-# The Eukaryome database, supplemented with maarjaam VXT assignments for glomeromycota taxa
+# The Eukaryome database (v1.9.4), supplemented with maarjaam VTX assignments for glomeromycota taxa
 
 # Run this from the directory where you will keep your databases for your project...
 # depends on:
@@ -21,17 +21,17 @@
 # The script:
 
 
-
+wget https://sisu.ut.ee/wp-content/uploads/sites/643/General_EUK_SSU_v1.9.4.zip
 # get Eukaryome databases
-wget https://sisu.ut.ee/wp-content/uploads/sites/643/General_EUK_SSU_v1.8.zip
-unzip General_EUK_SSU_v1.8.zip && rm General_EUK_SSU_v1.8.zip
-wget https://sisu.ut.ee/wp-content/uploads/sites/643/General_EUK_ITS_v1.8.zip
-unzip General_EUK_ITS_v1.8.zip && rm General_EUK_ITS_v1.8.zip
+wget https://sisu.ut.ee/wp-content/uploads/sites/643/General_EUK_SSU_v1.9.4.zip
+unzip General_EUK_SSU_v1.9.4.zip && rm General_EUK_SSU_v1.9.4.zip
+wget https://sisu.ut.ee/wp-content/uploads/sites/643/General_EUK_ITS_v1.9.4.zip
+unzip General_EUK_ITS_v1.9.4.zip && rm General_EUK_ITS_v1.9.4.zip
 
 
 # reformat Eukaryome to play nicely with dada2 assignTaxonomy() function
-cat General_EUK_SSU_v1.8.fasta | sed 's/>\([^;]*;\)/>/' | sed 's/>\([^|]*|\)/>/' | sed 's/|/;/g' > Eukaryome_General_SSU_v1.8_reformatted.fasta
-cat General_EUK_ITS_v1.8.fasta | sed 's/>\([^;]*;\)/>/' | sed 's/>\([^|]*|\)/>/' | sed 's/|/;/g' > Eukaryome_General_ITS_v1.8_reformatted.fasta
+cat General_EUK_SSU_v1.9.4.fasta | sed 's/>\([^;]*;\)/>/' | sed 's/>\([^|]*|\)/>/' | sed 's/|/;/g' > Eukaryome_General_SSU_v1.9.4_reformatted.fasta
+cat General_EUK_ITS_v1.9.4.fasta | sed 's/>\([^;]*;\)/>/' | sed 's/>\([^|]*|\)/>/' | sed 's/|/;/g' > Eukaryome_General_ITS_v1.9.4_reformatted.fasta
 
 
 # get maarjAM databases (fasta)
@@ -49,8 +49,8 @@ Rscript ./format_maarjAM.R
 
 # The R script built some newly formatted files...
 # combine the databases
-cat maarjam_database_SSU*newheaders.fasta Eukaryome_General_SSU_v1.8_reformatted.fasta > Eukaryome_General_SSU_v1.8_reformatted_VTX.fasta
-cat maarjam_database_full_ITS_2021_newheaders.fasta Eukaryome_General_ITS_v1.8_reformatted.fasta > Eukaryome_General_ITS_v1.8_reformatted_maarjam.fasta
+cat maarjam_database_SSU*newheaders.fasta Eukaryome_General_SSU_v1.9.4_reformatted.fasta > Eukaryome_General_SSU_v1.9.4_reformatted_VTX.fasta
+cat maarjam_database_full_ITS_2021_newheaders.fasta Eukaryome_General_ITS_v1.9.4_reformatted.fasta > Eukaryome_General_ITS_v1.9.4_reformatted_maarjam.fasta
 
 # compress the final files
 gzip *.fasta

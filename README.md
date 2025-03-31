@@ -49,7 +49,9 @@ Don't be lazy. Do it now. Embargo it if you like, but get it done. Only then is 
      ./build_taxonomy_database.sh
      cd -
      ```
-     
+  - This shell script will also call ```./taxonomy/format_maarjAM.R``` to combine the maarjAM VTX database with the Eukaryome SSU and ITS databases.
+  - When working with SSU, the database you most likely want to use is: ```Eukaryome_General_SSU_v1.9.4_reformatted_VTX.fasta.gz```
+  - This is the current version as of this writing. Script can be easily updated to point to newer Eukaryome versions if needed.   
   **3. Prepare your project data and metadata in reasonable file paths within the project**
   
   - Copy your raw sequence data into the ```./data/seq``` directory
