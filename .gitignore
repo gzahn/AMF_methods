@@ -1,6 +1,10 @@
 # ignore sequence data files
 data/seq
 
+# ignore large taxonomy files
+taxonomy/*.fasta*
+
+
 # History files
 .Rhistory
 .Rapp.history
